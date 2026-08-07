@@ -1,5 +1,4 @@
-from backend.app.prompts.prompts import SYSTEM_PROMPT
-
+from app.prompts.prompts import SYSTEM_PROMPT
 
 class ConversationMemory:
     """

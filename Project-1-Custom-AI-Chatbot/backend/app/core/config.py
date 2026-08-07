@@ -3,8 +3,7 @@ import os
 from dotenv import load_dotenv
 
 # Project root (backend/)
-BASE_DIR = Path(__file__).resolve().parents[2]
-
+BASE_DIR = Path(__file__).resolve().parents[3]
 # Load .env
 load_dotenv(BASE_DIR / ".env")
 

@@ -1,4 +1,4 @@
-from utils import show_help, show_history
+from backend.app.utils.utils import show_help, show_history
 
 
 def handle_command(command: str, memory):
