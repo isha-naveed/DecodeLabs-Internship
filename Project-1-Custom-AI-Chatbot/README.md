@@ -1,38 +1,51 @@
 # Custom AI Chatbot with Memory
 
-A conversational AI chatbot built with FastAPI, JWT authentication, SQLAlchemy, Groq LLM, and session-based conversation memory.
+A conversational AI chatbot built with **FastAPI, JWT authentication, SQLAlchemy, SQLite, Groq LLM, and session-based conversation memory**. The project provides a modern web-based chat interface with authentication, AI conversation, memory, chat controls, and automated testing.
 
 ## Features
 
-- User signup and login
-- JWT authentication
-- Secure password hashing
-- Groq LLM integration
-- Llama 3.3 70B model
-- Session-based conversation memory
-- Conversation history pruning
-- Clear conversation memory
-- Logout with session memory reset
-- Web-based chat interface
-- REST API
-- Swagger/OpenAPI documentation
-- Automated tests
-- SQLite database
+* User signup and login
+* JWT-based authentication
+* Secure password hashing with bcrypt
+* Groq LLM integration
+* Llama 3.3 70B model
+* Session-based in-memory conversation memory
+* Conversation memory pruning
+* New Chat functionality
+* Clear Chat functionality
+* Logout with conversation memory reset
+* Dynamic username and user avatar
+* AI online status
+* Creator identity awareness
+* Modern responsive web chat interface
+* REST API
+* Swagger/OpenAPI documentation
+* SQLite database for user and chat records
+* Automated tests
+* Error handling for authentication and AI service failures
 
 ## Tech Stack
 
-- Python 3.12
-- FastAPI
-- SQLAlchemy
-- SQLite
-- JWT
-- Passlib / bcrypt
-- Groq API
-- Llama 3.3 70B
-- HTML
-- CSS
-- JavaScript
-- Pytest
+### Backend
+
+* Python 3.12
+* FastAPI
+* SQLAlchemy
+* SQLite
+* JWT
+* Passlib / bcrypt
+* Groq API
+* Llama 3.3 70B
+
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+
+### Testing
+
+* Pytest
 
 ## Project Structure
 
@@ -40,41 +53,43 @@ A conversational AI chatbot built with FastAPI, JWT authentication, SQLAlchemy, 
 Project-1-Custom-AI-Chatbot/
 │
 ├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   │   ├── auth.py
-│   │   │   └── chat.py
-│   │   │
-│   │   ├── core/
-│   │   │   ├── config.py
-│   │   │   ├── dependencies.py
-│   │   │   └── security.py
-│   │   │
-│   │   ├── database/
-│   │   │   ├── connection.py
-│   │   │   └── models.py
-│   │   │
-│   │   ├── repositories/
-│   │   ├── schemas/
-│   │   └── services/
-│   │       ├── ai/
-│   │       ├── auth_service.py
-│   │       ├── chat_service.py
-│   │       └── memory.py
-│   │
-│   └── tests/
+│   └── app/
+│       ├── api/
+│       │   ├── auth.py
+│       │   └── chat.py
+│       │
+│       ├── core/
+│       │   ├── config.py
+│       │   ├── dependencies.py
+│       │   └── security.py
+│       │
+│       ├── database/
+│       │   ├── connection.py
+│       │   └── models.py
+│       │
+│       ├── repositories/
+│       ├── schemas/
+│       └── services/
+│           ├── ai_client.py
+│           ├── auth_service.py
+│           ├── chat_service.py
+│           └── memory.py
 │
 ├── frontend/
 │   ├── index.html
 │   ├── login.html
 │   ├── signup.html
+│   ├── css/
+│   │   └── style.css
 │   └── js/
+│       ├── app.js
+│       └── auth.js
 │
 ├── tests/
-├── .env
 ├── .gitignore
-└── README.md
-````
+├── README.md
+└── requirements.txt
+```
 
 ## Architecture
 
@@ -98,6 +113,7 @@ FastAPI REST API
  │      └── Groq AI Client
  │
  └── Database Layer
+        ├── SQLAlchemy
         ├── Repository
         └── SQLite
 ```
@@ -110,9 +126,9 @@ Users can:
 2. Login with username and password.
 3. Receive a JWT access token.
 4. Use the token to access protected chat endpoints.
-5. Logout and clear the current in-memory conversation.
+5. Logout and clear the current conversation memory.
 
-Passwords are hashed before being stored.
+Passwords are hashed using bcrypt before being stored.
 
 ## Conversation Memory
 
@@ -120,17 +136,15 @@ The chatbot uses **session-based in-memory conversation memory**.
 
 The memory contains:
 
-* System prompt
 * User messages
 * Assistant responses
+* System instructions
 
-Only the latest two conversation turns are retained.
+The memory is maintained separately for authenticated users during the active application session.
 
-Conversation memory can be cleared using the **Clear Chat** button.
+The application intentionally does **not** use a database for conversational memory because the project focuses on demonstrating live-session memory.
 
-Logging out also clears the user's in-memory conversation.
-
-The conversation memory is intentionally not stored permanently in the database.
+Users can start a fresh conversation using **New Chat** or clear the current conversation using **Clear Chat**.
 
 ## LLM Integration
 
@@ -140,7 +154,25 @@ The chatbot uses the Groq API with:
 Model: llama-3.3-70b-versatile
 ```
 
-The API key is loaded from the `.env` file.
+The API key is loaded securely from environment variables.
+
+The AI assistant also has a defined creator identity and can identify **Ishay Naveed** as its creator when asked.
+
+## Web Interface
+
+The frontend provides:
+
+* Login and signup pages
+* Modern AI chatbot interface
+* User profile display
+* Dynamic user avatar
+* AI online status
+* User and assistant message bubbles
+* Conversation memory
+* New Chat button
+* Clear Chat button
+* Logout functionality
+* Loading and error states
 
 ## API Endpoints
 
@@ -158,7 +190,7 @@ POST /chat
 POST /chat/clear
 ```
 
-### Documentation
+### API Documentation
 
 Swagger UI:
 
@@ -168,13 +200,13 @@ http://127.0.0.1:8000/docs
 
 ## Setup
 
-### 1. Create virtual environment
+### 1. Create a virtual environment
 
 ```powershell
 py -3.12 -m venv .venv
 ```
 
-### 2. Activate virtual environment
+### 2. Activate the virtual environment
 
 ```powershell
 .venv\Scripts\Activate.ps1
@@ -182,20 +214,22 @@ py -3.12 -m venv .venv
 
 ### 3. Install dependencies
 
+From the project root:
+
 ```powershell
-pip install -r backend/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 4. Configure environment variables
 
-Create `.env` in the project root:
+Create a `.env` file in the project root:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
 JWT_SECRET_KEY=your_secure_secret_key
 ```
 
-Never commit `.env` to GitHub.
+Never commit `.env` or API keys to GitHub.
 
 ### 5. Start the backend
 
@@ -210,7 +244,7 @@ Backend:
 http://127.0.0.1:8000
 ```
 
-Swagger:
+Swagger documentation:
 
 ```text
 http://127.0.0.1:8000/docs
@@ -228,19 +262,13 @@ in a browser.
 
 ## Testing
 
-Run the complete automated test suite:
+Run the automated test suite from the project root:
 
 ```powershell
 pytest -v
 ```
 
-Current test suite:
-
-```text
-10 tests passed
-```
-
-The tests cover:
+The test suite covers important components including:
 
 * Password hashing and verification
 * Conversation memory creation
@@ -250,6 +278,20 @@ The tests cover:
 * Chat service behavior
 * AI failure handling
 
+Manual end-to-end testing was also performed for:
+
+* Signup
+* Login
+* AI messaging
+* Conversation memory
+* New Chat
+* Clear Chat
+* Username display
+* User avatar
+* Creator identity
+* Logout
+* Authentication failure handling
+
 ## Security
 
 * Passwords are hashed using bcrypt.
@@ -257,26 +299,52 @@ The tests cover:
 * API credentials are loaded from environment variables.
 * `.env` must not be committed.
 * Database files should not be committed.
-* Protected endpoints require authentication.
+* Protected chat endpoints require authentication.
 
 ## Error Handling
 
-The application handles authentication failures and AI service failures.
+The application handles:
 
-If the AI service becomes unavailable, the API returns a service-unavailable response instead of exposing internal implementation details.
+* Invalid authentication
+* Expired or invalid JWT tokens
+* Invalid login credentials
+* AI service failures
+* Failed chat requests
+* Conversation clearing failures
+
+When the AI service is unavailable, the API returns an appropriate service-unavailable response instead of exposing internal implementation details.
 
 ## Project Objective
 
-This project demonstrates the development of a complete conversational AI application using an LLM API, authentication, session-based memory, REST APIs, database persistence, a web interface, and automated testing.
+This project demonstrates the development of a complete conversational AI application using:
 
-```
+* An external large language model
+* Authentication and authorization
+* Session-based conversational memory
+* REST APIs
+* Database-backed user management
+* A modern web interface
+* Error handling
+* Automated testing
 
-### After pasting
+The project was developed as part of the **DecodeLabs Generative AI Internship**.
 
-1. Press **Ctrl + S**
-2. Close Notepad.
-3. **Do not run anything else yet.**
-4. Tell me **"README done"**.
+## Future Improvements
 
-Then I'll give you **only the next step**.
-```
+Potential future enhancements include:
+
+* Persistent multi-conversation history
+* Chat history sidebar
+* Streaming AI responses
+* File and document uploads
+* Retrieval-Augmented Generation (RAG)
+* Voice interaction
+* Deployment to a cloud platform
+* Advanced conversation management
+
+## Author
+
+**Isha Naveed**
+
+BS Artificial Intelligence Student
+Generative AI Intern — DecodeLabs
