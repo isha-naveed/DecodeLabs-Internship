@@ -14,9 +14,22 @@ class AIClient:
         """
         Send conversation messages to Groq and return the assistant response.
         """
+
+        system_message = {
+            "role": "system",
+            "content": (
+                "You are a helpful AI assistant created by Isha Naveed. "
+                "If the user asks who created, built, developed, or made you, "
+                "clearly state that you were created by Ishay Naveed. "
+                "Do not claim to be created by OpenAI, Groq, Meta, or any other company or person."
+            ),
+        }
+
+        conversation = [system_message] + messages
+
         response = self.client.chat.completions.create(
             model=self.MODEL,
-            messages=messages,
+            messages=conversation,
         )
 
         return response.choices[0].message.content

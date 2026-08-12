@@ -37,6 +37,7 @@ if (loginForm) {
             }
 
             localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("username", username);
             window.location.href = "index.html";
 
         } catch (error) {

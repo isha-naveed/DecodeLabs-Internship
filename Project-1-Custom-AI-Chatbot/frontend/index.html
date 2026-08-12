@@ -10,40 +10,168 @@
 <body>
     <div class="app">
 
-        <header class="header">
-            <div>
-                <h1>AI Chatbot</h1>
-                <p>Conversational AI with Memory</p>
-            </div>
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
 
-            <div class="header-actions">
-                <button id="clearBtn" class="secondary-btn">Clear Chat</button>
-                <button id="logoutBtn" class="secondary-btn">Logout</button>
-            </div>
-        </header>
-
-        <main class="chat-container">
-            <div id="messages" class="messages">
-                <div class="message assistant">
-                    <div class="bubble">
-                        Hello! I'm your AI assistant. How can I help you today?
+                <div class="brand">
+                    <div class="brand-icon">✦</div>
+                    <div>
+                        <h2>AI Chatbot</h2>
+                        <span>Conversational AI</span>
                     </div>
                 </div>
+
+                <button id="newChatBtn" class="new-chat-btn" type="button">
+                    <span>＋</span>
+                    New Chat
+                </button>
+
+                <div class="sidebar-section">
+                    <div class="section-title">Conversation</div>
+
+                    <div class="chat-history-item active">
+                        <span>💬</span>
+                        <span>Current Conversation</span>
+                    </div>
+                </div>
+
             </div>
 
-            <div id="status" class="status"></div>
+            <div class="sidebar-bottom">
+                <div class="user-card">
+                    <div id="userAvatar" class="user-avatar">U</div>
+                    <div class="user-info">
+                        <strong id="usernameDisplay">User</strong>
+                        <span>AI Chatbot</span>
+                    </div>
 
-            <form id="chatForm" class="input-area">
-                <input
-                    id="messageInput"
-                    type="text"
-                    placeholder="Type your message..."
-                    autocomplete="off"
-                    required
-                >
-                <button id="sendBtn" type="submit">Send</button>
-            </form>
-        </main>
+                    <button id="logoutBtn" class="logout-btn" title="Logout">
+                        ↪
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+
+        <!-- MAIN CHAT -->
+        <section class="main-area">
+
+            <!-- HEADER -->
+            <header class="chat-header">
+                <div class="chat-title">
+                    <div class="ai-avatar">
+                        ✦
+                    </div>
+
+                    <div>
+                        <h1>AI Assistant</h1>
+                        <div class="online-status">
+                            <span></span>
+                            AI Online
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-actions">
+                    <button id="headerClearBtn" class="header-btn" type="button">
+                        Clear Chat
+                    </button>
+                </div>
+            </header>
+
+
+            <!-- CHAT -->
+            <main class="chat-container">
+
+                <div id="messages" class="messages">
+
+                    <!-- WELCOME -->
+                    <div class="welcome-state">
+                        <div class="welcome-icon">✦</div>
+
+                        <h2>How can I help you today?</h2>
+
+                        <p>
+                            I'm your AI assistant. Ask me anything and
+                            I'll do my best to help.
+                        </p>
+
+                        <div class="suggestion-grid">
+                            <div class="suggestion-card">
+                                <span>💡</span>
+                                <strong>Ask a question</strong>
+                                <small>Get clear and useful answers</small>
+                            </div>
+
+                            <div class="suggestion-card">
+                                <span>🧠</span>
+                                <strong>Continue a conversation</strong>
+                                <small>I remember our conversation</small>
+                            </div>
+
+                            <div class="suggestion-card">
+                                <span>⚡</span>
+                                <strong>Get help quickly</strong>
+                                <small>Fast AI-powered assistance</small>
+                            </div>
+
+                            <div class="suggestion-card">
+                                <span>✨</span>
+                                <strong>Explore ideas</strong>
+                                <small>Brainstorm and create</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INITIAL AI MESSAGE -->
+                    <div class="message assistant">
+                        <div class="message-avatar ai-message-avatar">✦</div>
+
+                        <div class="message-content">
+                            <div class="message-name">AI Assistant</div>
+
+                            <div class="bubble">
+                                Hello! I'm your AI assistant. How can I help you today?
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- STATUS -->
+                <div id="status" class="status"></div>
+
+
+                <!-- INPUT -->
+                <div class="input-wrapper">
+
+                    <form id="chatForm" class="input-area">
+
+                        <input
+                            id="messageInput"
+                            type="text"
+                            placeholder="Message AI Assistant..."
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button id="sendBtn" type="submit" aria-label="Send message">
+                            <span>➤</span>
+                        </button>
+
+                    </form>
+
+                    <div class="input-hint">
+                        AI can make mistakes. Check important information.
+                    </div>
+
+                </div>
+
+            </main>
+
+        </section>
 
     </div>
 
