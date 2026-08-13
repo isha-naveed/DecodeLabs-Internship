@@ -17,6 +17,8 @@ const newChatBtn = document.getElementById("newChatBtn");
 const clearBtn = document.getElementById("headerClearBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const userAvatar = document.getElementById("userAvatar");
+const usernameDisplay = document.getElementById("usernameDisplay");
+const welcomeState = document.querySelector(".welcome-state");
 
 
 /* =========================
@@ -37,6 +39,10 @@ if (userAvatar && username) {
 ========================= */
 
 function addMessage(text, role) {
+    if (welcomeState) {
+        welcomeState.style.display = "none";
+    }
+
     const message = document.createElement("div");
     message.className = `message ${role}`;
 
@@ -55,10 +61,13 @@ function addMessage(text, role) {
    RESET CHAT UI
 ========================= */
 
-function resetChatUI(message = "New conversation started. How can I help you?") {
+function resetChatUI() {
     messages.innerHTML = "";
 
-    addMessage(message, "assistant");
+    if (welcomeState) {
+        messages.appendChild(welcomeState);
+        welcomeState.style.display = "";
+    }
 
     status.textContent = "";
     messageInput.value = "";

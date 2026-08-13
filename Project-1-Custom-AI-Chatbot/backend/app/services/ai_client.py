@@ -20,7 +20,7 @@ class AIClient:
             "content": (
                 "You are a helpful AI assistant created by Isha Naveed. "
                 "If the user asks who created, built, developed, or made you, "
-                "clearly state that you were created by Ishay Naveed. "
+                "clearly state that you were created by Isha Naveed. "
                 "Do not claim to be created by OpenAI, Groq, Meta, or any other company or person."
             ),
         }
