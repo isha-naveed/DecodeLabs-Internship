@@ -174,6 +174,47 @@ The frontend provides:
 * Logout functionality
 * Loading and error states
 
+## Screenshots
+
+The following screenshots demonstrate the main features and user interface of the chatbot.
+
+### 1. User Signup
+
+Users can create a new account using the signup page.
+
+![User Signup](screenshots/01_signup.png)
+
+### 2. User Login
+
+Registered users can securely log in to access the chatbot.
+
+![User Login](screenshots/02_login.png)
+
+### 3. Home / Chat Interface
+
+The main chatbot interface provides a modern conversational experience with user information and chat controls.
+
+![Home Chat Interface](screenshots/03_homepage.png)
+
+### 4. AI Chat
+
+Users can interact with the AI assistant and receive responses through the Groq-powered LLM.
+
+![AI Chat](screenshots/04_chatbot.png)
+
+### 5. Conversation Memory
+
+The chatbot maintains conversation context during the active session, allowing the AI to remember previous messages.
+
+![Conversation Memory](screenshots/05_chat_memory.png)
+
+### 6. Clear Chat
+
+Users can clear the current conversation and start a fresh interaction.
+
+![Clear Chat](screenshots/06_clear_chat.png)
+
+
 ## API Endpoints
 
 ### Authentication
